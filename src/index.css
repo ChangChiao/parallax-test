@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .item {
+    @apply flex h-[50px] w-[200px] items-center justify-center bg-slate-500 text-white;
+  }
+}

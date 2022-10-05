@@ -9,9 +9,11 @@ const list = [
 ];
 function Index() {
   return (
-    <ul className="flex items-center">
+    <ul className="flex items-center justify-between">
       {list.map((item) => (
-        <Link key={item.name} to={item.path} />
+        <Link key={item.name} to={item.path}>
+          {item.name}
+        </Link>
       ))}
     </ul>
   );
