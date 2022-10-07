@@ -6,6 +6,7 @@ const list = [
   { name: "parallax", path: "/parallax" },
   { name: "lax", path: "/lax" },
   { name: "skrollr", path: "/skrollr" },
+  { name: "PDF", path: "/pdf" },
 ];
 function Index() {
   return (

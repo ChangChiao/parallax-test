@@ -5,6 +5,7 @@ import Aos from "./pages/Aos";
 import Parallax from "./pages/Parallax";
 import Lax from "./pages/Lax";
 import Skrollr from "./pages/Skrollr";
+import Pdf from "./pages/Pdf";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/parallax" element={<Parallax />} />
         <Route path="/lax" element={<Lax />} />
         <Route path="/skrollr" element={<Skrollr />} />
+        <Route path="/pdf" element={<Pdf />} />
       </Routes>
     </HashRouter>
   );
