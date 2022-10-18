@@ -6,7 +6,8 @@ function Pdf() {
   const [doc, setDoc] = useState(null);
   const canvasRef = useRef(null);
   const isPainting = useRef(false);
-  const ctx = useRef(null);
+  let ctx = null;
+  let canvasSize = null;
 
   const handleFile = (event) => {
     const upload = event.target.files[0];
@@ -39,8 +40,6 @@ function Pdf() {
   //   img.src = "doc";
   // };
 
-  const canvasToPdf = () => {};
-
   const preview = (file) => {
     return URL.createObjectURL(file);
   };
@@ -49,17 +48,17 @@ function Pdf() {
 
   function handleSign() {
     // 設定線條的相關數值
-    ctx.current.lineWidth = 4;
-    ctx.current.lineCap = "round";
+    ctx.lineWidth = 4;
+    ctx.lineCap = "round";
   }
 
   function getPaintPosition(e) {
-    const canvasSize = canvasRef.current.getBoundingClientRect();
-    console.log("canvasSize", canvasSize);
+    const scaleX = canvasRef.current.width / canvasSize.width;
+    const scaleY = canvasRef.current.height / canvasSize.height;
     if (e.type === "mousemove") {
       return {
-        x: e.clientX - canvasSize.left,
-        y: e.clientY - canvasSize.top,
+        x: (e.clientX - canvasSize.left) * scaleX,
+        y: (e.clientY - canvasSize.top) * scaleY,
       };
     } else {
       return {
@@ -78,7 +77,7 @@ function Pdf() {
   // 結束繪圖時，將狀態關閉，並產生新路徑
   function finishedPosition() {
     isPainting.current = false;
-    ctx.current.beginPath();
+    ctx.beginPath();
   }
 
   // 繪圖過程
@@ -90,8 +89,8 @@ function Pdf() {
     const paintPosition = getPaintPosition(e);
 
     // 移動滑鼠位置並產生圖案
-    ctx.current.lineTo(paintPosition.x, paintPosition.y);
-    ctx.current.stroke();
+    ctx.lineTo(paintPosition.x, paintPosition.y);
+    ctx.stroke();
   }
 
   function isTouchEventExist() {
@@ -100,16 +99,12 @@ function Pdf() {
 
   // 重新設定畫布
   function reset() {
-    ctx.current.clearRect(
-      0,
-      0,
-      canvasRef.current.width,
-      canvasRef.current.height
-    );
+    ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
   }
 
   useEffect(() => {
-    ctx.current = canvasRef.current.getContext("2d");
+    ctx = canvasRef.current.getContext("2d");
+    canvasSize = canvasRef.current.getBoundingClientRect();
     handleSign();
   }, []);
 
@@ -137,7 +132,7 @@ function Pdf() {
       </ul>
       <div className="sign_box">
         <canvas
-          className="h-[300px] w-4/5"
+          className="absolute top-56 left-56 h-[300px] w-[300px] border border-gray-800"
           id="canvas"
           onMouseDown={startPosition}
           onMouseUp={finishedPosition}
@@ -148,13 +143,11 @@ function Pdf() {
           onTouchCancel={finishedPosition}
           onTouchMove={draw}
           ref={canvasRef}
-          style={{ border: "1px solid #000" }}
         ></canvas>
         <img
-          className="sign_img"
+          className="border border-gray-800 sign_img"
           width="250"
           height="150"
-          style={{ border: "1px solid #000" }}
         />
         <div className="flex items-center justify-between">
           <button onClick={reset} className="clear">
