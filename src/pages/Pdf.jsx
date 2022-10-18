@@ -5,6 +5,7 @@ function Pdf() {
   const [file, setFile] = useState([]);
   const [doc, setDoc] = useState(null);
   const canvasRef = useRef(null);
+  const signImgRef = useRef(null);
   const isPainting = useRef(false);
   let ctx = null;
   let canvasSize = null;
@@ -102,6 +103,11 @@ function Pdf() {
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
   }
 
+  function saveImage() {
+    const newImage = canvasRef.current.toDataURL("image/png");
+    signImgRef.current.src = newImage;
+  }
+
   useEffect(() => {
     ctx = canvasRef.current.getContext("2d");
     canvasSize = canvasRef.current.getBoundingClientRect();
@@ -132,7 +138,7 @@ function Pdf() {
       </ul>
       <div className="sign_box">
         <canvas
-          className="absolute top-56 left-56 h-[300px] w-[300px] border border-gray-800"
+          className="h-[300px] w-[300px] border border-gray-800"
           id="canvas"
           onMouseDown={startPosition}
           onMouseUp={finishedPosition}
@@ -145,15 +151,16 @@ function Pdf() {
           ref={canvasRef}
         ></canvas>
         <img
-          className="border border-gray-800 sign_img"
-          width="250"
-          height="150"
+          className="h-[200px] w-[200px] border border-gray-800"
+          ref={signImgRef}
         />
         <div className="flex items-center justify-between">
           <button onClick={reset} className="clear">
             Clear
           </button>
-          <button className="save">Save</button>
+          <button className="save" onClick={saveImage}>
+            Save
+          </button>
         </div>
       </div>
     </div>
