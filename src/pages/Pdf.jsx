@@ -1,4 +1,4 @@
-import { useState, canvas, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 //新增儲存簽名檔 → 上傳背景文件並加入簽名檔 → 下載背景文件+簽名檔
 const imgType = ["jpg", "jpeg", "png"];
 function Pdf() {
@@ -6,7 +6,8 @@ function Pdf() {
   const [doc, setDoc] = useState(null);
   const canvasRef = useRef(null);
   const isPainting = useRef(false);
-  const ctx = canvasRef.current.getContext("2d");
+  const ctx = useRef(null);
+
   const handleFile = (event) => {
     const upload = event.target.files[0];
     if (imgType.includes(file.type)) {
@@ -25,18 +26,18 @@ function Pdf() {
     setDoc(upload);
   };
 
-  const imgToCanvas = () => {
-    const canvas = document.getElementById("canvas");
-    const img = new Image();
-    img.src = "doc";
-  };
+  // const imgToCanvas = () => {
+  //   const canvas = document.getElementById("canvas");
+  //   const img = new Image();
+  //   img.src = "doc";
+  // };
 
-  const pdfToCanvas = () => {
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
-    const img = new Image();
-    img.src = "doc";
-  };
+  // const pdfToCanvas = () => {
+  //   const canvas = document.getElementById("canvas");
+  //   const ctx = canvas.getContext("2d");
+  //   const img = new Image();
+  //   img.src = "doc";
+  // };
 
   const canvasToPdf = () => {};
 
@@ -48,13 +49,13 @@ function Pdf() {
 
   function handleSign() {
     // 設定線條的相關數值
-    ctx.lineWidth = 4;
-    ctx.lineCap = "round";
+    ctx.current.lineWidth = 4;
+    ctx.current.lineCap = "round";
   }
 
   function getPaintPosition(e) {
-    const canvasSize = canvas.current.getBoundingClientRect();
-
+    const canvasSize = canvasRef.current.getBoundingClientRect();
+    console.log("canvasSize", canvasSize);
     if (e.type === "mousemove") {
       return {
         x: e.clientX - canvasSize.left,
@@ -77,7 +78,7 @@ function Pdf() {
   // 結束繪圖時，將狀態關閉，並產生新路徑
   function finishedPosition() {
     isPainting.current = false;
-    ctx.beginPath();
+    ctx.current.beginPath();
   }
 
   // 繪圖過程
@@ -89,8 +90,8 @@ function Pdf() {
     const paintPosition = getPaintPosition(e);
 
     // 移動滑鼠位置並產生圖案
-    ctx.lineTo(paintPosition.x, paintPosition.y);
-    ctx.stroke();
+    ctx.current.lineTo(paintPosition.x, paintPosition.y);
+    ctx.current.stroke();
   }
 
   function isTouchEventExist() {
@@ -99,10 +100,16 @@ function Pdf() {
 
   // 重新設定畫布
   function reset() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.current.clearRect(
+      0,
+      0,
+      canvasRef.current.width,
+      canvasRef.current.height
+    );
   }
 
   useEffect(() => {
+    ctx.current = canvasRef.current.getContext("2d");
     handleSign();
   }, []);
 
