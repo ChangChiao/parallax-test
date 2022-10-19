@@ -106,6 +106,7 @@ function Pdf() {
   function saveImage() {
     const newImage = canvasRef.current.toDataURL("image/png");
     signImgRef.current.src = newImage;
+    localStorage.setItem("sign_img", newImg);
   }
 
   useEffect(() => {
