@@ -1,9 +1,11 @@
-import React from "react";
-const Base64Prefix = "data:application/pdf;base64";
+import React, { useEffect } from "react";
+import { fabric } from "fabric";
+const Base64Prefix = "data:application/pdf;base64,";
 pdfjsLib.GlobalWorkerOptions.workerSrc =
   "https://mozilla.github.io/pdf.js/build/pdf.worker.js";
 
 function PdfToCanvas() {
+  let canvas = null;
   function readBlob(blob) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -16,7 +18,7 @@ function PdfToCanvas() {
   async function printPDF(pdfData) {
     // 將檔案處理成 base64
     pdfData = await readBlob(pdfData);
-
+    console.log("pdfData", pdfData);
     // 將 base64 中的前綴刪去，並進行解碼
     const data = window.atob(pdfData.substring(Base64Prefix.length));
 
@@ -55,9 +57,8 @@ function PdfToCanvas() {
   }
 
   // 此處 canvas 套用 fabric.js
-  const canvas = new fabric.Canvas("canvas");
 
-  document.querySelector(".pdf_file").addEventListener("change", async (e) => {
+  async function handlePDFupload(e) {
     canvas.requestRenderAll();
     const pdfData = await printPDF(e.target.files[0]);
     const pdfImage = await pdfToImage(pdfData);
@@ -68,11 +69,17 @@ function PdfToCanvas() {
 
     // 將 PDF 畫面設定為背景
     canvas.setBackgroundImage(pdfImage, canvas.renderAll.bind(canvas));
-  });
+  }
+
+  useEffect(() => {
+    canvas = new fabric.Canvas("canvasPDF");
+  }, []);
+
   return (
     <div>
       <button>add</button>
-      <input className="pdf_file" type="file" />
+      <input onChange={handlePDFupload} type="file" placeholder="選擇PDF檔案" />
+      <canvas id="canvasPDF" className="border" />
     </div>
   );
 }
