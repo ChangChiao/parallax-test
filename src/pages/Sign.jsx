@@ -66,7 +66,7 @@ function Sign() {
   function saveImage() {
     const newImage = canvasRef.current.toDataURL("image/png");
     signImgRef.current.src = newImage;
-    localStorage.setItem("sign_img", newImg);
+    localStorage.setItem("sign_img", newImage);
   }
 
   useEffect(() => {
@@ -75,7 +75,7 @@ function Sign() {
     handleSign();
   }, []);
   return (
-    <div className="sign_box">
+    <div className="py-4 sign_box">
       <canvas
         className="h-[300px] w-[300px] border border-gray-800"
         id="canvas"

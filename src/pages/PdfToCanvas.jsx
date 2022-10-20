@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
+import { jsPDF } from "jspdf";
 import { fabric } from "fabric";
 const Base64Prefix = "data:application/pdf;base64,";
 pdfjsLib.GlobalWorkerOptions.workerSrc =
   "https://mozilla.github.io/pdf.js/build/pdf.worker.js";
+const pdf = new jsPDF();
 
 function PdfToCanvas() {
   let canvas = null;
@@ -71,13 +73,38 @@ function PdfToCanvas() {
     canvas.setBackgroundImage(pdfImage, canvas.renderAll.bind(canvas));
   }
 
+  function imgOnCanvas() {
+    const img = localStorage.getItem("sign_img");
+    fabric.Image.fromURL(img, function (image) {
+      // 設定簽名出現的位置及大小，後續可調整
+      image.top = 400;
+      image.scaleX = 0.5;
+      image.scaleY = 0.5;
+      canvas.add(image);
+    });
+  }
+
+  function downloadPDF() {
+    // 將 canvas 存為圖片
+    const image = canvas.toDataURL("image/png");
+
+    // 設定背景在 PDF 中的位置及大小
+    const width = pdf.internal.pageSize.width;
+    const height = pdf.internal.pageSize.height;
+    pdf.addImage(image, "png", 0, 0, width, height);
+
+    // 將檔案取名並下載
+    pdf.save("download.pdf");
+  }
+
   useEffect(() => {
     canvas = new fabric.Canvas("canvasPDF");
   }, []);
 
   return (
     <div>
-      <button>add</button>
+      <button onClick={downloadPDF}>download</button>
+      <button onClick={imgOnCanvas}>add Sign</button>
       <input onChange={handlePDFupload} type="file" placeholder="選擇PDF檔案" />
       <canvas id="canvasPDF" className="border" />
     </div>
