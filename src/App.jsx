@@ -6,6 +6,7 @@ import Parallax from "./pages/Parallax";
 import Lax from "./pages/Lax";
 import Skrollr from "./pages/Skrollr";
 import Pdf from "./pages/Pdf";
+import GSAP from "./pages/GSAP";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/lax" element={<Lax />} />
         <Route path="/skrollr" element={<Skrollr />} />
         <Route path="/pdf" element={<Pdf />} />
+        <Route path="/gsap" element={<GSAP />} />
       </Routes>
     </HashRouter>
   );
