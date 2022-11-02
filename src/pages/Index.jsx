@@ -8,6 +8,7 @@ const list = [
   { name: "skrollr", path: "/skrollr" },
   { name: "PDF", path: "/pdf" },
   { name: "GSAP", path: "/gsap" },
+  { name: "TimeLine", path: "/timeline" },
 ];
 function Index() {
   return (

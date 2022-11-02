@@ -7,6 +7,7 @@ import Lax from "./pages/Lax";
 import Skrollr from "./pages/Skrollr";
 import Pdf from "./pages/Pdf";
 import GSAP from "./pages/GSAP";
+import TimeLine from "./pages/TimeLine";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/skrollr" element={<Skrollr />} />
         <Route path="/pdf" element={<Pdf />} />
         <Route path="/gsap" element={<GSAP />} />
+        <Route path="/timeline" element={<TimeLine />} />
       </Routes>
     </HashRouter>
   );
