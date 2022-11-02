@@ -5,7 +5,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import TextPlugin from "gsap/TextPlugin";
 
 gsap.registerPlugin(ScrollTrigger, Draggable, TextPlugin);
-function GSAP() {
+function TimeLine() {
   const timelime = gsap.timeline();
   useEffect(() => {
     timelime.to(".box", { x: 100, opacity: 1, duration: 1 });
@@ -19,4 +19,4 @@ function GSAP() {
   );
 }
 
-export default GSAP;
+export default TimeLine;

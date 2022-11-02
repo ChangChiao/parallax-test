@@ -9,6 +9,7 @@ const list = [
   { name: "PDF", path: "/pdf" },
   { name: "GSAP", path: "/gsap" },
   { name: "TimeLine", path: "/timeline" },
+  { name: "ScrollTrigger", path: "/scrollTrigger" },
 ];
 function Index() {
   return (
