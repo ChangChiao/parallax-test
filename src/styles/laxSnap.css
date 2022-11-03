@@ -1,0 +1,108 @@
+.background {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  background-size: cover;
+}
+
+.page {
+  flex-shrink: 0;
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  position: relative;
+  display: inline-block;
+  background-size: cover;
+}
+
+.bg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-size: cover;
+}
+
+.image {
+  height: 60vh;
+  width: 80%;
+  left: 10%;
+  position: absolute;
+  transform-origin: center top;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  top: 5vh;
+}
+
+.container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  direction: ltr;
+  width: 100vw;
+  -webkit-overflow-scrolling: touch;
+}
+
+h1 {
+  top: 67vh;
+  position: absolute;
+  width: 100%;
+  font-weight: 100;
+  text-align: center;
+  color: white;
+  font-weight: 800;
+  font-size: 60px;
+}
+
+p {
+  top: 70vh;
+  position: absolute;
+  width: 100%;
+  font-weight: 100;
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  line-height: 28px;
+  padding: 10vh;
+  padding-left: 200px;
+  padding-right: 200px;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 600px) {
+  p {
+    padding: 50px;
+    top: 55vh;
+  }
+
+  h1 {
+    top: 48vh;
+  }
+
+  .image {
+    top: -2vh;
+  }
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: black;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  font-family: "Comfortaa", arial;
+}
+
+html {
+  height: 100vh;
+  overflow: hidden;
+}
+
+#controls {
+  position: fixed;
+  top: 0;
+  left: 0;
+}

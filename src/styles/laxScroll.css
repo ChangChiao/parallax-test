@@ -1,0 +1,29 @@
+.circle {
+  height: 100px;
+  width: 100px;
+  background-color: #a26ddc;
+  margin-bottom: 0px;
+  margin-left: -50px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.container {
+  padding-top: 50vh;
+  width: 100vw;
+  overflow-y: hidden;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  padding: 0;
+  background-color: #dedbde;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 50%,
+    transparent
+  );
+  margin: 0;
+  background-size: 700px 700px;
+}

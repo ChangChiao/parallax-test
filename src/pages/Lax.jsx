@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 const list = [
   { name: "cursor", path: "laxcursor" },
   { name: "Inertia", path: "laxInertia" },
+  { name: "update", path: "laxUpdate" },
+  { name: "scroll", path: "laxScroll" },
+  { name: "Snap", path: "laxSnap" },
 ];
 function Lax() {
   useEffect(() => {
