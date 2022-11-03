@@ -10,6 +10,7 @@ const list = [
   { name: "GSAP", path: "/gsap" },
   { name: "TimeLine", path: "/timeline" },
   { name: "ScrollTrigger", path: "/scrollTrigger" },
+  { name: "ScrollTriggerPin", path: "/scrollTriggerPin" },
 ];
 function Index() {
   return (

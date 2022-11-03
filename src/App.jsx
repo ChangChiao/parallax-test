@@ -9,6 +9,7 @@ import Pdf from "./pages/Pdf";
 import GSAP from "./pages/GSAP";
 import TimeLine from "./pages/TimeLine";
 import ScrollTrigger from "./pages/ScrollTrigger";
+import ScrollTriggerPin from "./pages/ScrollTriggerPin";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/gsap" element={<GSAP />} />
         <Route path="/timeline" element={<TimeLine />} />
         <Route path="/scrollTrigger" element={<ScrollTrigger />} />
+        <Route path="/scrollTriggerPin" element={<ScrollTriggerPin />} />
       </Routes>
     </HashRouter>
   );
