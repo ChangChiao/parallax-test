@@ -1,0 +1,28 @@
+#text {
+  width: calc(100vw - 40px);
+  left: 20;
+  top: 20;
+  position: fixed;
+  font-size: 60px;
+  font-family: sans-serif;
+  color: #a26ddc;
+  overflow-wrap: anywhere;
+  font-weight: bold;
+}
+
+#text.pink {
+  color: #ff568c;
+}
+
+body {
+  padding: 0;
+  background-color: #dedbde;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 50%,
+    transparent
+  );
+  margin: 0;
+  background-size: 700px 700px;
+  height: 1000000px;
+}
