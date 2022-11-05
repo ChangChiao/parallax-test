@@ -11,6 +11,8 @@ const list = [
   { name: "TimeLine", path: "/timeline" },
   { name: "ScrollTrigger", path: "/scrollTrigger" },
   { name: "ScrollTriggerPin", path: "/scrollTriggerPin" },
+  { name: "ScrollTriggerScene", path: "/scrollTriggerScene" },
+  ,
 ];
 function Index() {
   return (
