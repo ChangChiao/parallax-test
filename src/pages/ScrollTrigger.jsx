@@ -32,7 +32,7 @@ function ScrollTriggerView() {
   }, []);
   return (
     <div className="h-[300vh] bg-slate-500 py-[500px]">
-      <div class="fixed top-0 left-0 right-0 bottom-0 m-auto h-[300px] w-1/2 bg-white">
+      <div className="fixed top-0 left-0 right-0 bottom-0 m-auto h-[300px] w-1/2 bg-white">
         <div className="w-10 h-10 bg-green-500 box1"></div>
       </div>
     </div>

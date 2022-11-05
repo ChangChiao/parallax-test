@@ -51,7 +51,7 @@ function LaxInertia() {
     });
   }, []);
 
-  return <div class="circle"></div>;
+  return <div className="circle"></div>;
 }
 
 export default LaxInertia;
